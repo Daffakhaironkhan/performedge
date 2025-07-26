@@ -11,7 +11,7 @@ class FlowHandling extends Model
 
     protected $fillable = [
         'program',
-        'user',
+        'users',
         'category1',
         'category2',
         'category3',

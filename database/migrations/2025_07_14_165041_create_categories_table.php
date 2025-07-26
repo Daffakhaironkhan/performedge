@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->date('request_date');
-            $table->string('layanan');
+            $table->string('program');
             $table->string('role');
             $table->string('category1');
             $table->string('category2');

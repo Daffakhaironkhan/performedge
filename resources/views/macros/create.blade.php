@@ -23,12 +23,12 @@
 
                 <div class="mb-4">
                     <label class="block mb-1 font-medium text-gray-700 dark:text-gray-300">User</label>
-                    <select name="user" class="w-full rounded border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white @error('user') border-red-500 @enderror">
+                    <select name="user" class="w-full rounded border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white @error('users') border-red-500 @enderror">
                         <option value="">-- Pilih User --</option>
-                        <option value="1" {{ old('user') == '1' ? 'selected' : '' }}>1</option>
-                        <option value="2" {{ old('user') == '2' ? 'selected' : '' }}>2</option>
+                        <option value="1" {{ old('users') == '1' ? 'selected' : '' }}>1</option>
+                        <option value="2" {{ old('users') == '2' ? 'selected' : '' }}>2</option>
                     </select>
-                    @error('user') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
+                    @error('users') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
                 </div>
 
                 <div class="mb-4">

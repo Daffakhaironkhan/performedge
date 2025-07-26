@@ -5,7 +5,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\FlowHandlingController;
 use App\Http\Controllers\MacroController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\SamplingController;
 use App\Http\Controllers\ScorecardController;
 use Illuminate\Support\Facades\Route;
@@ -18,6 +18,7 @@ Route::get('/home', function () {
     return view('page.home');
 })->middleware(['auth', 'verified'])->name('home');
 
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -27,8 +28,14 @@ Route::middleware('auth')->group(function () {
     Route::resource('flow_handlings', FlowHandlingController::class);
     Route::resource('macros', MacroController::class);
     Route::resource('sampling', SamplingController::class);
+    Route::resource('users', UserController::class);
     Route::get('/scorecard/me', [ScorecardController::class, 'me'])->name('scorecard.me');
+    Route::get('/get-agent-detail/{id}', [SamplingController::class, 'getAgentDetail'])->name('agent.detail');
+    Route::get('/agents-by-level/{level}', [SamplingController::class, 'getAgentsByLevel'])->name('agents.byLevel');
+//    Route::get('/categories-by-program/{program}', [SamplingController::class, 'getCategoriesByProgram'])->name('categories.byProgram');
+    Route::get('/categories-by-program/{program}', [SamplingController::class, 'getCategoriesByProgram']);
 
+//    Route::get('/sampling/create', [SamplingController::class,])->name('samplings.create');
 });
 
 

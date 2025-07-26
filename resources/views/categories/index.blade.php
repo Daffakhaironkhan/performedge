@@ -43,7 +43,7 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th class="px-6 py-3">Request Date</th>
-                <th class="px-6 py-3">Layanan</th>
+                <th class="px-6 py-3">Program</th>
                 <th class="px-6 py-3">Role</th>
                 <th class="px-6 py-3">Category 1</th>
                 <th class="px-6 py-3">Category 2</th>
@@ -58,7 +58,7 @@
             @forelse ($categories as $category)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <td class="px-6 py-4">{{ $category->request_date }}</td>
-                    <td class="px-6 py-4">{{ $category->layanan }}</td>
+                    <td class="px-6 py-4">{{ $category->program }}</td>
                     <td class="px-6 py-4">{{ $category->role }}</td>
                     <td class="px-6 py-4">{{ $category->category1 }}</td>
                     <td class="px-6 py-4">{{ $category->category2 }}</td>

@@ -10,8 +10,8 @@ class Macro extends Model
     use HasFactory;
 
     protected $fillable = [
-        'layanan',
-        'user',
+        'program',
+        'users',
         'category1',
         'category2',
         'category3',

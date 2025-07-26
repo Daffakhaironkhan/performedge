@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('flow_handlings', function (Blueprint $table) {
             $table->id();
             $table->string('program');
-            $table->string('user');
+            $table->string('users');
             $table->string('category1');
             $table->string('category2');
             $table->string('category3');

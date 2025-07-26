@@ -24,8 +24,8 @@ class MacroController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'layanan'          => 'required|string',
-            'user'             => 'required|string',
+            'program'          => 'required|string',
+            'users'             => 'required|string',
             'category1'        => 'required|string',
             'category2'        => 'required|string',
             'category3'        => 'required|string',
@@ -38,8 +38,8 @@ class MacroController extends Controller
         ]);
 
         Macro::create([
-            'layanan'          => $request->layanan,
-            'user'             => $request->user,
+            'program'          => $request->program,
+            'users'             => $request->user,
             'category1'        => $request->category1,
             'category2'        => $request->category2,
             'category3'        => $request->category3,
@@ -67,8 +67,8 @@ class MacroController extends Controller
     public function update(Request $request, Macro $macro): RedirectResponse
     {
         $request->validate([
-            'layanan'          => 'required|string',
-            'user'             => 'required|string',
+            'program'          => 'required|string',
+            'users'             => 'required|string',
             'category1'        => 'required|string',
             'category2'        => 'required|string',
             'category3'        => 'required|string',
@@ -81,8 +81,8 @@ class MacroController extends Controller
         ]);
 
         $macro->update([
-            'layanan'          => $request->layanan,
-            'user'             => $request->user,
+            'program'          => $request->program,
+            'users'             => $request->user,
             'category1'        => $request->category1,
             'category2'        => $request->category2,
             'category3'        => $request->category3,

@@ -20,15 +20,15 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Layanan</label>
-                        <select name="layanan"
-                                class="w-full border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white rounded-lg shadow-sm @error('layanan') border-red-500 @enderror">
-                            <option value="">-- Pilih Layanan --</option>
-                            <option value="1" {{ old('layanan', $category->layanan) == '1' ? 'selected' : '' }}>1</option>
-                            <option value="2" {{ old('layanan', $category->layanan) == '2' ? 'selected' : '' }}>2</option>
-                            <option value="3" {{ old('layanan', $category->layanan) == '3' ? 'selected' : '' }}>3</option>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">program</label>
+                        <select name="program"
+                                class="w-full border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white rounded-lg shadow-sm @error('program') border-red-500 @enderror">
+                            <option value="">-- Pilih Program --</option>
+                            <option value="1" {{ old('program', $category->program) == '1' ? 'selected' : '' }}>1</option>
+                            <option value="2" {{ old('program', $category->program) == '2' ? 'selected' : '' }}>2</option>
+                            <option value="3" {{ old('program', $category->program) == '3' ? 'selected' : '' }}>3</option>
                         </select>
-                        @error('layanan')
+                        @error('program')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>

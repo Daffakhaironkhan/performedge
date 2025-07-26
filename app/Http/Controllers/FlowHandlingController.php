@@ -24,7 +24,7 @@ class FlowHandlingController extends Controller
     {
         $request->validate([
             'program'          => 'required|string',
-            'user'             => 'required|string',
+            'users'             => 'required|string',
             'category1'       => 'required|string',
             'category2'       => 'required|string',
             'category3'       => 'required|string',
@@ -36,7 +36,7 @@ class FlowHandlingController extends Controller
 
         FlowHandling::create([
             'program'            => $request->program,
-            'user'               => $request->user,
+            'users'               => $request->user,
             'category1'         => $request->category1,
             'category2'         => $request->category2,
             'category3'         => $request->category3,
@@ -63,7 +63,7 @@ class FlowHandlingController extends Controller
     {
         $request->validate([
             'program'          => 'required|string',
-            'user'             => 'required|string',
+            'users'             => 'required|string',
             'category1'       => 'required|string',
             'category2'       => 'required|string',
             'category3'       => 'required|string',
@@ -75,7 +75,7 @@ class FlowHandlingController extends Controller
 
         $flowHandling->update([
             'program'            => $request->program,
-            'user'               => $request->user,
+            'users'               => $request->user,
             'category1'         => $request->category1,
             'category2'         => $request->category2,
             'category3'         => $request->category3,

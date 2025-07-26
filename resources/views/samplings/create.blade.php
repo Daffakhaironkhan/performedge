@@ -15,11 +15,40 @@
             <form action="{{ route('sampling.store') }}" method="POST">
                 @csrf
 
+                {{-- Ticket ID --}}
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 items-end">
+                    <div class="md:col-span-2">
+                        <label for="ticketID" class="block text-sm font-medium text-gray-700 dark:text-gray-200">
+                            Ticket ID
+                        </label>
+                        <input
+                            type="text"
+                            name="ticket_id"
+                            id="ticketID"
+                            value="{{ $randomParticipant->nama ?? 'Choose a ticket' }}"
+                            readonly
+                            required
+                            class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm"
+                        >
+                    </div>
+                    <div class="mt-2 md:mt-0">
+                        <a href="{{ route('sampling.create', ['pick' => 1]) }}"
+                           class="inline-block w-full text-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                            Pick Ticket
+                        </a>
+                    </div>
+                </div>
+
+                {{-- Kolom lainnya --}}
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <div>
                         <label for="namaQA" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Nama QA</label>
-                        <select name="nama_qa" id="namaQA" required class="w-full border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm">
+                        <select name="nama_qa" id="namaQA" required
+                                class="w-full border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm">
                             <option value="">-- Pilih Nama QA --</option>
+                            @foreach ($qaList as $qa)
+                                <option value="{{ $qa->nama }}">{{ $qa->nama }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div>
@@ -38,23 +67,28 @@
                     </div>
                     <div>
                         <label for="teamLeader" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Team Leader</label>
-                        <input type="text" name="team_leader" id="teamLeader" class="w-full border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm" readonly required>
+                        <input type="text" name="team_leader" id="teamLeader" readonly
+                               class="w-full border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm" required>
                     </div>
                     <div>
                         <label for="program" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Program</label>
-                        <input type="text" name="program" id="program" class="w-full border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm" readonly required>
+                        <input type="text" name="program" id="program" readonly
+                               class="w-full border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm" required>
                     </div>
                     <div>
                         <label for="kanal" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Kanal</label>
-                        <input type="text" name="kanal" id="kanal" class="w-full border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm" required>
-                    </div>
-                    <div>
-                        <label for="ticketID" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Ticket ID</label>
-                        <input type="text" name="ticket_id" id="ticketID" class="w-full border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm" required>
+                        <select name="kanal" id="kanal" class="w-full border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm" required>
+                            <option value="">-- Pilih Kanal --</option>
+                            <option value="WalkIn">Walk In</option>
+                            <option value="Voice">Voice</option>
+                            <option value="NonVoice">Non Voice</option>
+                        </select>
                     </div>
                     <div>
                         <label for="category" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Category</label>
-                        <input type="text" name="category" id="category" class="w-full border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm" required>
+                        <select name="category" id="category" class="w-full border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm" required>
+                            <option value="">-- Pilih Category --</option>
+                        </select>
                     </div>
                     <div>
                         <label for="eventDateTime" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Event Date & Time</label>
@@ -153,6 +187,87 @@
 @endsection
 
 @push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const levelSelect = document.getElementById('levelAgent');
+            const namaSelect = document.getElementById('namaAgent');
+
+            levelSelect.addEventListener('change', function () {
+                const level = this.value;
+
+                // Reset dropdown nama agent
+                namaSelect.innerHTML = '<option value="">-- Pilih Nama Agent --</option>';
+
+                if (!level) return;
+
+                fetch(`/agents-by-level/${level}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        Object.entries(data).forEach(([id, nama]) => {
+                            const option = document.createElement('option');
+                            option.value = id;
+                            option.text = nama;
+                            namaSelect.appendChild(option);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Gagal ambil agent:', error);
+                    });
+            });
+        });
+    </script>
+    <script>
+        document.getElementById('namaAgent').addEventListener('change', function () {
+            const agentId = this.value;
+
+            if (!agentId) return;
+
+            fetch(`/get-agent-detail/${agentId}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('teamLeader').value = data.team_leader || '';
+                    document.getElementById('program').value = data.program || '';
+
+                    // Setelah program di-set, fetch kategori
+                    fetchCategories(data.program);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('teamLeader').value = '';
+                    document.getElementById('program').value = '';
+                    document.getElementById('category').innerHTML = '<option value="">-- Pilih Category --</option>';
+                });
+        });
+
+    </script>
+
+    <script>
+        function fetchCategories(program) {
+            const categorySelect = document.getElementById('category');
+            if (!program) {
+                categorySelect.innerHTML = '<option value="">-- Pilih Category --</option>';
+                return;
+            }
+
+            fetch(`/categories-by-program/${program}`)
+                .then(response => response.json())
+                .then(data => {
+                    categorySelect.innerHTML = '<option value="">-- Pilih Category --</option>';
+                    Object.entries(data).forEach(([id, name]) => {
+                        const option = document.createElement('option');
+                        option.value = name;
+                        option.text = name;
+                        categorySelect.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    console.error("Gagal memuat kategori:", error);
+                });
+        }
+
+    </script>
+
+
     <script>
         function calculateWeight(score, weight) {
             if (!isNaN(score)) return (weight / 5) * score;

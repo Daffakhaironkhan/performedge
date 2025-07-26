@@ -11,7 +11,7 @@ class Category extends Model
 
     protected $fillable = [
         'request_date',
-        'layanan',
+        'program',
         'role',
         'category1',
         'category2',

@@ -12,7 +12,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 @foreach ([
                     'program' => ['-- Pilih Program --', ['1', '2', '3']],
-                    'user' => ['-- Pilih User --', ['1', '2']],
+                    'users' => ['-- Pilih User --', ['1', '2']],
                     'category1' => ['-- Pilih Category 1 --', ['regulasi', 'plafrom']],
                     'category2' => ['-- Pilih Category 2 --', ['textA', 'textB']],
                     'category3' => ['-- Pilih Category 3 --', ['textA', 'textB']],

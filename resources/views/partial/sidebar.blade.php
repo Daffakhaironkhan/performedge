@@ -1293,13 +1293,13 @@
 {{--</aside>--}}
 
 {{--<div class="sidebar">--}}
-{{--    <!-- Sidebar user panel (optional) -->--}}
-{{--    <div class="user-panel mt-3 pb-3 mb-3 d-flex">--}}
+{{--    <!-- Sidebar users panel (optional) -->--}}
+{{--    <div class="users-panel mt-3 pb-3 mb-3 d-flex">--}}
 {{--        <div class="image">--}}
 {{--            <img src="{{asset('dashboardtemplate/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">--}}
 {{--        </div>--}}
 {{--        <div class="info">--}}
-{{--            <a href="/profile" class="d-block">{{ Auth::user()->name }}</a>--}}
+{{--            <a href="/profile" class="d-block">{{ Auth::users()->name }}</a>--}}
 {{--        </div>--}}
 {{--    </div>--}}
 
@@ -1374,7 +1374,7 @@
 {{--            </li>--}}
 {{--            <li class="nav-item">--}}
 {{--                <a href="/employees" class="nav-link">--}}
-{{--                    <i class="nav-icon fas fa-user-friends"></i>--}}
+{{--                    <i class="nav-icon fas fa-users-friends"></i>--}}
 {{--                    <p>--}}
 {{--                        Employee Data--}}
 {{--                    </p>--}}
@@ -1403,7 +1403,7 @@
 {{--                    </li>--}}
 {{--                    <li class="nav-item">--}}
 {{--                        <a href="scorecard/my" class="nav-link">--}}
-{{--                            <i class="far fa-user nav-icon"></i>--}}
+{{--                            <i class="far fa-users nav-icon"></i>--}}
 {{--                            <p>My Score Card</p>--}}
 {{--                        </a>--}}
 {{--                    </li>--}}

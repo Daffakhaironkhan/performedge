@@ -19,15 +19,15 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Layanan</label>
-                    <select name="layanan"
-                            class="w-full border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white rounded-lg shadow-sm @error('layanan') border-red-500 @enderror">
-                        <option value="">-- Pilih Layanan --</option>
-                        <option value="1" {{ old('layanan') == '1' ? 'selected' : '' }}>1</option>
-                        <option value="2" {{ old('layanan') == '2' ? 'selected' : '' }}>2</option>
-                        <option value="3" {{ old('layanan') == '3' ? 'selected' : '' }}>3</option>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">program</label>
+                    <select name="program"
+                            class="w-full border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white rounded-lg shadow-sm @error('program') border-red-500 @enderror">
+                        <option value="">-- Pilih program --</option>
+                        <option value="HiEdu" {{ old('program') == 'HiEdu' ? 'selected' : '' }}>HiEdu</option>
+                        <option value="ULT Dikbud" {{ old('program') == 'ULTDikbud' ? 'selected' : '' }}>ULT Dikbud</option>
+                        <option value="Belajar.id" {{ old('program') == 'Belajar.id' ? 'selected' : '' }}>Belajar.id</option>
                     </select>
-                    @error('layanan')
+                    @error('program')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>
@@ -37,8 +37,8 @@
                     <select name="role"
                             class="w-full border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white rounded-lg shadow-sm @error('role') border-red-500 @enderror">
                         <option value="">-- Pilih Role --</option>
-                        <option value="1" {{ old('role') == '1' ? 'selected' : '' }}>1</option>
-                        <option value="2" {{ old('role') == '2' ? 'selected' : '' }}>2</option>
+                        <option value="Quality Assurance" {{ old('role') == 'QA' ? 'selected' : '' }}>Quality Assurance</option>
+                        <option value="Senior Agent" {{ old('role') == 'SA' ? 'selected' : '' }}>Senior Agent</option>
                     </select>
                     @error('role')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>

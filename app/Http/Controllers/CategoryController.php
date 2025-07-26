@@ -25,7 +25,7 @@ class CategoryController extends Controller
     {
         $request->validate([
             'request_date' => 'required|date',
-            'layanan'      => 'required|string',
+            'program'      => 'required|string',
             'role'         => 'required|string',
             'category1'    => 'required|string',
             'category2'    => 'required|string',
@@ -37,7 +37,7 @@ class CategoryController extends Controller
 
         Category::create([
             'request_date' => $request->request_date,
-            'layanan'      => $request->layanan,
+            'program'      => $request->program,
             'role'         => $request->role,
             'category1'    => $request->category1,
             'category2'    => $request->category2,
@@ -64,7 +64,7 @@ class CategoryController extends Controller
     {
         $request->validate([
             'request_date' => 'required|date',
-            'layanan'      => 'required|string',
+            'program'      => 'required|string',
             'role'         => 'required|string',
             'category1'    => 'required|string',
             'category2'    => 'required|string',
@@ -76,7 +76,7 @@ class CategoryController extends Controller
 
         $category->update([
             'request_date' => $request->request_date,
-            'layanan'      => $request->layanan,
+            'program'      => $request->program,
             'role'         => $request->role,
             'category1'    => $request->category1,
             'category2'    => $request->category2,

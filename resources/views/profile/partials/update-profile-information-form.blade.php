@@ -17,7 +17,7 @@
             </label>
             <input id="name" name="name" type="text"
                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
-                   value="{{ old('name', $user->name) }}" required autofocus>
+                   value="{{ old('name', $users->name) }}" required autofocus>
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
@@ -27,10 +27,10 @@
             </label>
             <input id="email" name="email" type="email"
                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
-                   value="{{ old('email', $user->email) }}" required>
+                   value="{{ old('email', $users->email) }}" required>
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
-            @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
+            @if ($users instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $users->hasVerifiedEmail())
                 <div class="mt-2 text-sm text-gray-800 dark:text-gray-300">
                     {{ __('Your email address is unverified.') }}
                     <button form="send-verification" class="ml-2 text-primary-600 hover:underline">
@@ -85,16 +85,16 @@
 
 {{--        <div>--}}
 {{--            <x-input-label for="name" :value="__('Name')" />--}}
-{{--            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />--}}
+{{--            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $users->name)" required autofocus autocomplete="name" />--}}
 {{--            <x-input-error class="mt-2" :messages="$errors->get('name')" />--}}
 {{--        </div>--}}
 
 {{--        <div>--}}
 {{--            <x-input-label for="email" :value="__('Email')" />--}}
-{{--            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />--}}
+{{--            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $users->email)" required autocomplete="username" />--}}
 {{--            <x-input-error class="mt-2" :messages="$errors->get('email')" />--}}
 
-{{--            @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())--}}
+{{--            @if ($users instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $users->hasVerifiedEmail())--}}
 {{--                <div>--}}
 {{--                    <p class="text-sm mt-2 text-gray-800">--}}
 {{--                        {{ __('Your email address is unverified.') }}--}}
